@@ -5,7 +5,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class CatService {
-  private apiKey = 'live_kMyj7VwZO2qddfrmZCe95Wu7MOkydLFm8UWhbX5dB220tqMmmq3hyIdyx6EYqtJu';
+  private apiKey =
+    'live_kMyj7VwZO2qddfrmZCe95Wu7MOkydLFm8UWhbX5dB220tqMmmq3hyIdyx6EYqtJu';
   private apiUrl = 'https://api.thecatapi.com/v1';
 
   cats = signal<Cat[]>([]);
@@ -13,7 +14,8 @@ export class CatService {
   constructor(private http: HttpClient) {}
 
   fetchCats() {
-    const url = `${this.apiUrl}/images/search?limit=10&api_key=${this.apiKey}`;
+    const timestamp = new Date().getTime();
+    const url = `${this.apiUrl}/images/search?limit=10&api_key=${this.apiKey}&timestamp=${timestamp}`;
     this.http.get<Cat[]>(url).subscribe((cats) => {
       this.cats.set(cats);
     });
