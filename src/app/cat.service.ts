@@ -14,8 +14,7 @@ export class CatService {
   constructor(private http: HttpClient) {}
 
   fetchCats() {
-    const timestamp = new Date().getTime();
-    const url = `${this.apiUrl}/images/search?limit=10&api_key=${this.apiKey}&timestamp=${timestamp}`;
+    const url = `${this.apiUrl}/images/search?limit=10&api_key=${this.apiKey}`;
     this.http.get<Cat[]>(url).subscribe((cats) => {
       this.cats.set(cats);
     });
